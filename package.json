@@ -7,7 +7,6 @@
     "test": "nodemon --ignore public/ server.js"
   },
   "author": "Andreas Hammer",
-  "license": "MIT",
   "dependencies": {
     "async": "^2.5.0",
     "body-parser": "^1.18.1",
