@@ -24,7 +24,7 @@ $(function(){
             else
                 t = "<p>You have no quizzes registered, how about making your first?</p>";
             for(var i = 0; i < data.length; i++){
-                t += "<tr><th scope='row'>" + data[i].title + "</th><td>" + new Date(data[i].time) + "</td><td><button class='btn btn-info float-right' onclick='edit(\"" + data[i]._id + "\")'>Edit</button></tdtd>";
+                t += "<tr><th scope='row'>" + data[i].title + "</th><td>" + new Date(data[i].time) + "</td><td><button class='btn btn-info disabled float-right' onclick='edit(\"" + data[i]._id + "\")' disabled>Edit</button></tdtd>";
             }
             t += "</tbody></table>";
             $("#quizzes").html(t);

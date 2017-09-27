@@ -1,4 +1,8 @@
 $(function(){
+    $("#lusername").keyup(enterPress("#butLogin"));
+    $("#lpassword").keyup(enterPress("#butLogin"));
+    $("#rusername").keyup(enterPress("#butRegister"));
+    $("#rpassword").keyup(enterPress("#butRegister"));
     if(window.location.hash == "")
         window.location += "#login";
     switch(window.location.hash){
@@ -60,9 +64,25 @@ $(function(){
     });
 });
 
+function enterPress(sel){
+    return function(event){
+        if(event.keyCode == 13){
+            $(sel).click();
+        }
+    }
+}
+
 function reset(){
+    $("#rpassword").val("");
+    $("#rusername").val("");
+    $("#lpassword").val("");
+    $("#lusername").val("");
+    $("#registerError").html("");
+    $("#loginError").html("");
     $("#register").css("display", "none");
     $("#login").css("display", "none");
+    $("#registerError").html("");
+    $("#loginError").html("");
     switch(window.location.hash){
         case '#register':
             $("#register").css("display", "block");

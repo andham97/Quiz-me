@@ -1,8 +1,8 @@
 $(function(){
     $("#login").click(function(){
-        window.location = "/login";
+        window.location = "/login/#login";
     });
-    $("#register").click(function(){
-        window.location = "/login/#register";
+    $("#attend").click(function(){
+        window.location = "/attend";
     });
 });

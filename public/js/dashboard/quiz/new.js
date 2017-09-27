@@ -31,10 +31,29 @@ function addAlternative(){
 function save(){
     var base = $("#qst_cnt").find("div[data-type='content']");
     var qsts = [];
+    var quiz = {};
+    quiz.title = $("#title").val();
+    if(quiz.title == ""){
+        error("The quiz must have a name");
+        return;
+    }
+    quiz.time = new Date($("#time").val()).getTime();
+    if(isNaN(quiz.time)){
+        error("The quiz must have a valid date and time");
+        return;
+    }
     for(var i = 0; i < base.length; i++){
         var question = {};
         var txt = $(base[i]).find("input[data-type='question']").val();
+        if(txt == ""){
+            error("The question field at question " + (i + 1) + " is empty, please fill in a question text");
+            return;
+        }
         var time = Number($(base[i]).find("input[data-type='questionTime']").val());
+        if(time <= 0){
+            error("The time parameter in question " + (i + 1) + " is faulty, please provide a time greater than 0");
+            return;
+        }
         var img = $(base[i]).find("input[data-type='questionImage']").val();
         var a = getAlternative(base[i]);
         var alt = a[0];
@@ -44,11 +63,16 @@ function save(){
         question.alternative = alt;
         question.correct = c;
         question.image = img;
+        if(!question.alternative || question.alternative.length == 0){
+            error("You must provide at least one alternative for question " + (i + 1));
+            return;
+        }
+        if(!question.correct || question.correct.length == 0){
+            error("You must provide at least one correct alternative for question " + (i + 1));
+            return;
+        }
         qsts.push(question);
     }
-    var quiz = {};
-    quiz.title = $("#title").val();
-    quiz.time = new Date($("#time").val()).getTime();
     quiz.questions = qsts;
     $.ajax({
         url: '/api/quiz',
@@ -71,11 +95,15 @@ function getAlternative(b){
     for(var i = 0; i < base.length - 1; i++){
         var txt = $(base[i]).find('input[type=text]').val();
         var c = $(base[i]).find('input[type=checkbox]')[0].checked;
-        console.log(c);
-        console.log(txt);
+        if(txt == "")
+            continue;
         ret.push(txt);
         if(c)
             crr.push(i);
     }
     return [ret, crr];
+}
+
+function error(msg){
+    $("#error").html(msg);
 }

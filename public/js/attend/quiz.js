@@ -2,6 +2,11 @@ var curQuiz, quizInterval, curQuestion = -1, qstStart;
 
 $(function(){
     $("#quiz").hide();
+    $("#nick").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#addNick").click();
+        }
+    });
     var quizId = ("" + window.location).split('=')[1];
     $("#addNick").click(function(){
         $.ajax({
@@ -68,7 +73,6 @@ function nextQuestion(){
                 curQuestion: curQuestion,
                 answer: val
             },
-            success: console.log,
             error: console.error
         });
     }

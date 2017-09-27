@@ -38,11 +38,6 @@ dbCon.on('open', function(){
     app.use(cookieparser('signinng'));
     app.use(express.static(path.join(__dirname, 'public')));
 
-    app.get('*', function(req, res, next){
-        console.log(req.session.user_id);
-        next();
-    });
-
     app.use('/api', require('./routes/api'));
     app.use('/', require('./routes/frontend'));
 

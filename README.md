@@ -1,4 +1,4 @@
-# quiz-system
+# Quiz me
 
 > A simple quiz web app
 
