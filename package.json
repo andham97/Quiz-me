@@ -1,0 +1,23 @@
+{
+  "name": "quiz-system",
+  "version": "1.0.0",
+  "description": "A simple quiz webapp",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon --ignore public/ server.js"
+  },
+  "author": "Andreas Hammer",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-fileupload": "^0.2.0",
+    "express-session": "^1.15.5",
+    "mongoose": "4.10.8",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7"
+  }
+}
